@@ -163,9 +163,15 @@ public class ViroActivityAR extends Activity {
         if (!mObjLoaded || !mImageTargetFound) {
             return;
         }
+//        for (Iterator<String> it = mBlackPantherModel.getAnimationKeys().iterator(); it.hasNext(); ) {
+//            String key = it.next();
+//            Log.d("Anim", key);
+//        }
+//        return;
 
         // Animate the black panther's jump animation
-        final Animation animationJump = mBlackPantherModel.getAnimation("01");
+        //final Animation animationJump = mBlackPantherModel.getAnimation("01");
+        final Animation animationJump = mBlackPantherModel.getAnimation("Cube|Action");
         animationJump.setListener(new Animation.Listener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -175,7 +181,8 @@ public class ViroActivityAR extends Activity {
             @Override
             public void onAnimationFinish(Animation animation, boolean canceled) {
                 // After jump animation is finished set the panther's idle animation
-                final Animation animationIdle = mBlackPantherModel.getAnimation("02");
+                //final Animation animationIdle = mBlackPantherModel.getAnimation("02");
+                final Animation animationIdle = mBlackPantherModel.getAnimation("Cube|Action.001");
                 animationIdle.play();
             }
         });
@@ -191,7 +198,10 @@ public class ViroActivityAR extends Activity {
         mBlackPantherModel = new Object3D();
         mBlackPantherModel.setRotation(new Vector(Math.toRadians(-90), 0, 0));
         mBlackPantherModel.setScale(new Vector(0.2f, 0.2f, 0.2f));
-        mBlackPantherModel.loadModel(mViroView.getViroContext(), Uri.parse("file:///android_asset/blackpanther/object_bpanther_anim.vrx"), Object3D.Type.FBX, new AsyncObject3DListener() {
+        mBlackPantherModel.loadModel(mViroView.getViroContext(),
+                //Uri.parse("file:///android_asset/blackpanther/object_bpanther_anim.vrx"),
+                Uri.parse("file:///android_asset/model.vrx"),
+                Object3D.Type.FBX, new AsyncObject3DListener() {
             @Override
             public void onObject3DLoaded(final Object3D object, final Object3D.Type type) {
                 mObjLoaded = true;
@@ -252,6 +262,7 @@ public class ViroActivityAR extends Activity {
         final Material material = new Material();
         material.setShadowMode(Material.ShadowMode.TRANSPARENT);
 
+        // TODO Surface -> Quad
         Surface surface = new Surface(3, 3);
         surface.setMaterials(Arrays.asList(material));
 

@@ -18,7 +18,7 @@
 
         <meta-data
             android:name="com.viromedia.API_KEY"
-            android:value="Your-API-Key-Here" />
+            android:value="10A3C535-7B81-417E-B48B-6F34E5297D85" />
 
         <activity
             android:name="com.example.virosample.ViroActivityAR"
