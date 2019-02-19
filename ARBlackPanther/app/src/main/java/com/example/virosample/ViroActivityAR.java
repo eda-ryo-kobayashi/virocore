@@ -30,8 +30,10 @@ import com.viro.core.ARAnchor;
 import com.viro.core.ARImageTarget;
 import com.viro.core.ARNode;
 import com.viro.core.ARScene;
+import com.viro.core.AmbientLight;
 import com.viro.core.Animation;
 import com.viro.core.AsyncObject3DListener;
+import com.viro.core.DirectionalLight;
 import com.viro.core.Material;
 import com.viro.core.Node;
 import com.viro.core.Object3D;
@@ -252,6 +254,31 @@ public class ViroActivityAR extends Activity {
         spotLight.setCastsShadow(true);
 
         lightingNode.addLight(spotLight);
+
+        final AmbientLight aLight = new AmbientLight(Color.parseColor("#FFFFFF"), 1.0f);
+        lightingNode.addLight(aLight);
+
+        final DirectionalLight d1Light = new DirectionalLight(
+                Color.parseColor("#FFFFFF"), 1.0f,
+                new Vector(1.0f, -1.0f, 1.0f).normalize()
+        );
+        final DirectionalLight d2Light = new DirectionalLight(
+                Color.parseColor("#FFFFFF"), 1.0f,
+                new Vector(-1.0f, -1.0f, 1.0f).normalize()
+        );
+        final DirectionalLight d3Light = new DirectionalLight(
+                Color.parseColor("#FFFFFF"), 1.0f,
+                new Vector(1.0f, -1.0f, -1.0f).normalize()
+        );
+        final DirectionalLight d4Light = new DirectionalLight(
+                Color.parseColor("#FFFFFF"), 1.0f,
+                new Vector(-1.0f, -1.0f, -1.0f).normalize()
+        );
+
+        lightingNode.addLight(d1Light);
+        lightingNode.addLight(d2Light);
+        lightingNode.addLight(d3Light);
+        lightingNode.addLight(d4Light);
 
         // Add a lighting environment for realistic PBR rendering
         Texture environment = Texture.loadRadianceHDRTexture(Uri.parse("file:///android_asset/wakanda_360.hdr"));
