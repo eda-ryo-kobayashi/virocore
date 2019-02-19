@@ -199,7 +199,8 @@ public class ViroActivityAR extends Activity {
         Node blackPantherNode = new Node();
         mBlackPantherModel = new Object3D();
         mBlackPantherModel.setRotation(new Vector(Math.toRadians(-90), 0, 0));
-        mBlackPantherModel.setScale(new Vector(0.2f, 0.2f, 0.2f));
+        //mBlackPantherModel.setScale(new Vector(0.2f, 0.2f, 0.2f));
+        mBlackPantherModel.setScale(new Vector(1f, 1f, 1f));
         mBlackPantherModel.loadModel(mViroView.getViroContext(),
                 //Uri.parse("file:///android_asset/blackpanther/object_bpanther_anim.vrx"),
                 Uri.parse("file:///android_asset/model.vrx"),
