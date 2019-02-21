@@ -25,6 +25,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.viro.core.ARAnchor;
 import com.viro.core.ARImageTarget;
@@ -72,6 +73,10 @@ public class ViroActivityAR extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         mViroView = new ViroViewARCore(this, new ViroViewARCore.StartupListener() {
             @Override
@@ -172,8 +177,8 @@ public class ViroActivityAR extends Activity {
 //        return;
 
         // Animate the black panther's jump animation
-        //final Animation animationJump = mBlackPantherModel.getAnimation("01");
-        final Animation animationJump = mBlackPantherModel.getAnimation("Cube|Action");
+        final Animation animationJump = mBlackPantherModel.getAnimation("01");
+        //final Animation animationJump = mBlackPantherModel.getAnimation("Cube|Action");
         animationJump.setListener(new Animation.Listener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -183,8 +188,8 @@ public class ViroActivityAR extends Activity {
             @Override
             public void onAnimationFinish(Animation animation, boolean canceled) {
                 // After jump animation is finished set the panther's idle animation
-                //final Animation animationIdle = mBlackPantherModel.getAnimation("02");
-                final Animation animationIdle = mBlackPantherModel.getAnimation("Cube|Action.001");
+                final Animation animationIdle = mBlackPantherModel.getAnimation("02");
+                //final Animation animationIdle = mBlackPantherModel.getAnimation("Cube|Action.001");
                 animationIdle.play();
             }
         });
@@ -199,11 +204,11 @@ public class ViroActivityAR extends Activity {
         Node blackPantherNode = new Node();
         mBlackPantherModel = new Object3D();
         mBlackPantherModel.setRotation(new Vector(Math.toRadians(-90), 0, 0));
-        //mBlackPantherModel.setScale(new Vector(0.2f, 0.2f, 0.2f));
-        mBlackPantherModel.setScale(new Vector(1f, 1f, 1f));
+        mBlackPantherModel.setScale(new Vector(0.2f, 0.2f, 0.2f));
+        //mBlackPantherModel.setScale(new Vector(1f, 1f, 1f));
         mBlackPantherModel.loadModel(mViroView.getViroContext(),
-                //Uri.parse("file:///android_asset/blackpanther/object_bpanther_anim.vrx"),
-                Uri.parse("file:///android_asset/model.vrx"),
+                Uri.parse("file:///android_asset/blackpanther/object_bpanther_anim.vrx"),
+                //Uri.parse("file:///android_asset/model.vrx"),
                 Object3D.Type.FBX, new AsyncObject3DListener() {
             @Override
             public void onObject3DLoaded(final Object3D object, final Object3D.Type type) {
